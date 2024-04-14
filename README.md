@@ -26,7 +26,7 @@ usando o PS C:\> <venv>\Scripts\Activate.ps1
 (env)$ pip install -r requirements.txt
 ```
 
-# Sobe o serviço
+# Inicializa o serviço
 ```
 (env)$ flask run --host 0.0.0.0 --port 5000
 ```
