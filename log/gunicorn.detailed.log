@@ -1,2 +1,0 @@
-[2024-04-13 22:32:43,052] INFO _log() L96   127.0.0.1 - - [13/Apr/2024 22:32:43] "GET /pagamentos HTTP/1.1" 200 - - call_trace=C:\Users\aferreira\Documents\PÓS PUC-RIO\MVP-01\back-end\api\env\lib\site-packages\werkzeug\_internal.py L96  
-[2024-04-13 22:32:48,198] INFO _log() L96   127.0.0.1 - - [13/Apr/2024 22:32:48] "GET /pagamentos HTTP/1.1" 200 - - call_trace=C:\Users\aferreira\Documents\PÓS PUC-RIO\MVP-01\back-end\api\env\lib\site-packages\werkzeug\_internal.py L96  
