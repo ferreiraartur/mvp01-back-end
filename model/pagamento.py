@@ -3,6 +3,7 @@ from datetime import date
 from typing import Union
 from model import Base
 
+
 class Pagamento(Base):
     __tablename__ = 'pagamento'
 
@@ -14,6 +15,7 @@ class Pagamento(Base):
     valor = Column(Float)
     valor_multa = Column(Float)
     status = Column(String(4000))
+    
 
     def __init__(self, nome:str, descricao:str, data_vencimento:date,
                  data_pagamento:date, valor:float, valor_multa:float, status:str):

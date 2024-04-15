@@ -7,6 +7,7 @@ import os
 from model.base import Base
 from model.pagamento import Pagamento
 
+
 db_path = "database/"
 # Verifica se o diretorio não existe
 if not os.path.exists(db_path):

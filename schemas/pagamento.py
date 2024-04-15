@@ -79,6 +79,7 @@ def apresenta_pagamento(pagamento: Pagamento):
         PagamentoViewSchema.
     """
     return {
+        "id": pagamento.id,
         "nome": pagamento.nome,
         "descricao": pagamento.descricao,
         "data_vencimento": pagamento.data_vencimento,
