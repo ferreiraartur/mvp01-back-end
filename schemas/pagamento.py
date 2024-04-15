@@ -8,6 +8,7 @@ from model.pagamento import Pagamento
 class PagamentoSchema(BaseModel):
     """ Define como um novo pagamento a ser inserido deve ser representado
     """
+    id: int = "1"
     nome: str = "Conta de Luz"
     descricao: Optional[str] = " casa"
     data_vencimento: date = (2024-4-5)
@@ -22,6 +23,12 @@ class PagamentoBuscaSchema(BaseModel):
     """
     nome: str = "Conta de Luz"
 
+class PagamentoBuscaPorIdSchema(BaseModel):
+    """ Define como deve ser a estrutura que representa a busca. Que será
+        feita apenas com base no nome do pagamento.
+    """
+    id: int = "1"
+
 class ListagemPagamentosSchema(BaseModel):
     """ Define como uma listagem de pagamentos será retornada.
     """
@@ -35,6 +42,7 @@ def apresenta_pagamentos(pagamentos: List[Pagamento]):
     result = []
     for pagamento in pagamentos:
         result.append({
+            "id": pagamento.id,
             "nome": pagamento.nome,
             "descricao": pagamento.descricao,
             "data_vencimento": pagamento.data_vencimento,
@@ -62,7 +70,8 @@ class PagamentoDelSchema(BaseModel):
         de remoção.
     """
     mesage: str
-    nome: str
+    #nome: str
+    id: int
 
 
 def apresenta_pagamento(pagamento: Pagamento):

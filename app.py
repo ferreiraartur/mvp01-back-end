@@ -109,28 +109,52 @@ def get_pagamento(query: PagamentoBuscaSchema):
         return apresenta_pagamento(pagamento), 200
 
 
-@app.delete('/pagamento', tags=[pagamento_tag],
-            responses={"200": PagamentoDelSchema, "404": ErrorSchema})
-def del_pagamento(query: PagamentoBuscaSchema):
-    """Deleta um Pagamento a partir do nome de pagamento informado
+#@app.delete('/pagamento', tags=[pagamento_tag],
+#            responses={"200": PagamentoDelSchema, "404": ErrorSchema})
+#def del_pagamento(query: PagamentoBuscaSchema):
+#    """Deleta um Pagamento a partir do nome de pagamento informado
 
+#    Retorna uma mensagem de confirmação da remoção.
+#    """
+#    pagamento_nome = unquote(unquote(query.nome))
+#    print(pagamento_nome)
+#    logger.debug(f"Deletando dados sobre pagamento #{pagamento_nome}")
+#    # criando conexão com a base
+#    session = Session()
+#    # fazendo a remoção
+#    count = session.query(Pagamento).filter(Pagamento.nome == pagamento_nome).delete()
+#    session.commit()
+#
+#    if count:
+#        # retorna a representação da mensagem de confirmação
+#        logger.debug(f"Deletado pagamento #{pagamento_nome}")
+#        return {"mesage": "Pagamento removido", "id": pagamento_nome}
+#    else:
+#        # se o pagamento não foi encontrado
+#        error_msg = "Pagamento não encontrado na base :/"
+#        logger.warning(f"Erro ao deletar pagamento #'{pagamento_nome}', {error_msg}")
+#        return {"mesage": error_msg}, 404
+
+@app.delete ('/pagamento', tags=[pagamento_tag],
+        responses={"200": PagamentoViewSchema, "404": ErrorSchema})
+def del_pagamento(query: PagamentoBuscaPorIdSchema):
+    """Deleta um Pagamento a partir do id do pagamento informado
     Retorna uma mensagem de confirmação da remoção.
     """
-    pagamento_nome = unquote(unquote(query.nome))
-    print(pagamento_nome)
-    logger.debug(f"Deletando dados sobre pagamento #{pagamento_nome}")
+    pagamento_id = query.id
+    logger.debug(f"Coletando dados sobre produto #{pagamento_id}")
     # criando conexão com a base
     session = Session()
     # fazendo a remoção
-    count = session.query(Pagamento).filter(Pagamento.nome == pagamento_nome).delete()
+    count = session.query(Pagamento).filter(Pagamento.id == pagamento_id).delete()
     session.commit()
 
     if count:
         # retorna a representação da mensagem de confirmação
-        logger.debug(f"Deletado pagamento #{pagamento_nome}")
-        return {"mesage": "Pagamento removido", "id": pagamento_nome}
+        logger.debug(f"Deletado produto #{pagamento_id}")
+        return {"mesage": "Produto removido", "id": pagamento_id}
     else:
-        # se o pagamento não foi encontrado
-        error_msg = "Pagamento não encontrado na base :/"
-        logger.warning(f"Erro ao deletar pagamento #'{pagamento_nome}', {error_msg}")
+        # se o produto não foi encontrado
+        error_msg = "Produto não encontrado na base :/"
+        logger.warning(f"Erro ao deletar produto #'{pagamento_id}', {error_msg}")
         return {"mesage": error_msg}, 404
