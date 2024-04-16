@@ -109,31 +109,33 @@ def get_pagamento(query: PagamentoBuscaSchema):
         return apresenta_pagamento(pagamento), 200
 
 
-#@app.delete('/pagamento', tags=[pagamento_tag],
-#            responses={"200": PagamentoDelSchema, "404": ErrorSchema})
-#def del_pagamento(query: PagamentoBuscaSchema):
-#    """Deleta um Pagamento a partir do nome de pagamento informado
+@app.post('/atualizar_status_pagamento', tags=[pagamento_tag],
+            responses={"200": PagamentoViewSchema, "404": ErrorSchema})
+def update_status_pagamento(query: PagamentoBuscaPorIdSchema):
+    """Atualiza o status de um Pagamento a partir do id informado
 
-#    Retorna uma mensagem de confirmação da remoção.
-#    """
-#    pagamento_nome = unquote(unquote(query.nome))
-#    print(pagamento_nome)
-#    logger.debug(f"Deletando dados sobre pagamento #{pagamento_nome}")
-#    # criando conexão com a base
-#    session = Session()
-#    # fazendo a remoção
-#    count = session.query(Pagamento).filter(Pagamento.nome == pagamento_nome).delete()
-#    session.commit()
-#
-#    if count:
-#        # retorna a representação da mensagem de confirmação
-#        logger.debug(f"Deletado pagamento #{pagamento_nome}")
-#        return {"mesage": "Pagamento removido", "id": pagamento_nome}
-#    else:
-#        # se o pagamento não foi encontrado
-#        error_msg = "Pagamento não encontrado na base :/"
-#        logger.warning(f"Erro ao deletar pagamento #'{pagamento_nome}', {error_msg}")
-#        return {"mesage": error_msg}, 404
+    Retorna uma mensagem de confirmação da atualização.
+    """
+    pagamento_id = query.id
+    logger.debug(f"Coletando dados sobre pagamento#{pagamento_id}")
+    # criando conexão com a base
+    session = Session()
+    # fazendo a atualização
+    pagamento = session.query(Pagamento).filter(Pagamento.id == pagamento_id).first()
+    logger.debug(f"exibir pagamento#{pagamento}")
+    pagamento.status = "Quitado"
+    session.commit()
+
+    if not pagamento:
+        # se o pagamento não foi encontrado
+        error_msg = "Pagamento não encontrado na base :/"
+        logger.warning(f"Erro ao buscar pagamento '{pagamento_id}', {error_msg}")
+        return {"mesage": error_msg}, 404
+    else:
+        logger.debug(f"Pagamento econtrado: '{pagamento.nome}'")
+        # retorna a representação de pagamento
+        return apresenta_pagamento(pagamento), 200
+    
 
 @app.delete ('/pagamento', tags=[pagamento_tag],
         responses={"200": PagamentoViewSchema, "404": ErrorSchema})

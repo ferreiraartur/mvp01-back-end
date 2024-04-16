@@ -25,7 +25,7 @@ class PagamentoBuscaSchema(BaseModel):
 
 class PagamentoBuscaPorIdSchema(BaseModel):
     """ Define como deve ser a estrutura que representa a busca. Que será
-        feita apenas com base no nome do pagamento.
+        feita apenas com base no id do pagamento.
     """
     id: int = "1"
 
@@ -70,7 +70,6 @@ class PagamentoDelSchema(BaseModel):
         de remoção.
     """
     mesage: str
-    #nome: str
     id: int
 
 
