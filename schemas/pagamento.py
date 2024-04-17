@@ -11,8 +11,8 @@ class PagamentoSchema(BaseModel):
     id: int = "1"
     nome: str = "Conta de Luz"
     descricao: Optional[str] = " casa"
-    data_vencimento: date = (2024-4-5)
-    data_pagamento: date = (2024-4-5)
+    data_vencimento: date = "2024-12-10"
+    data_pagamento: date = "2024-12-10"
     status: str = "Aberto"
     valor: float = 1
     valor_multa: float = 0
@@ -58,8 +58,8 @@ class PagamentoViewSchema(BaseModel):
     id: int = 1
     nome: str = "Conta de Luz"
     descricao: Optional[str] = "Conta de Luz "
-    data_vencimento: date = (2024, 4, 5)
-    data_pagamento: date = (2024, 4, 5)
+    data_vencimento: date = "2024-12-10"
+    data_pagamento: date = "2024-12-10"
     status: str = "Aberto"
     valor: float = 1
     valor_multa: float = 0
