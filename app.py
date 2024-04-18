@@ -13,7 +13,7 @@ app = OpenAPI(__name__, info=info)
 CORS(app)
 
 # definindo tags
-pagamento_tag = Tag(name="Pagamento", description="Adição, visualização e remoção de pagamentos à base")
+pagamento_tag = Tag(name="Pagamento", description="Adição, visualização, busca, atualização de situação e remoção de pagamentos à base")
 
 
 @app.get('/')
