@@ -1,3 +1,9 @@
+# Minha API
+
+Este projeto faz parte do MVP01 da Disciplina **Desenvolvimento Full Stack Básico** 
+
+---
+## Como executar 
 
 # Criar ambiente virtual
 
@@ -25,10 +31,31 @@ usando o PS C:\> <venv>\Scripts\Activate.ps1
 ```
 (env)$ pip install -r requirements.txt
 ```
+Este comando instala as dependências/bibliotecas, descritas no arquivo `requirements.txt`.
 
 # Inicializa o serviço
+Para executar a API  basta executar:
 ```
 (env)$ flask run --host 0.0.0.0 --port 5000
 ```
+Em modo de desenvolvimento é recomendado executar utilizando o parâmetro reload, que reiniciará o servidor
+automaticamente após uma mudança no código fonte.
+
+```
+(env)$ flask run --host 0.0.0.0 --port 5000 --reload
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
